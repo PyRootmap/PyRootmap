@@ -1,4 +1,4 @@
-# PyRootmap: An implementation of Diggle's (1988) Rootmap algorithm written in Python
+# PyRootmap: A Python implementation of Diggle's (1988) Rootmap algorithm
 
 National Autonomous University of Mexico (UNAM).
 
