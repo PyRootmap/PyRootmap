@@ -5,15 +5,15 @@
 #    Author    A. J. Diggle
 #    Journal   Mathematics and Computers in Simulation
 #    Volume    30
-#   Number    1
-#   Pages     175-180
-#   Year      1988
-#   ISSN      0378-4754
-#   DOI       https://doi.org/10.1016/0378-4754(88)90121-8
-#
-#   Copyright (C) 2022  Karime Ochoa Jacinto
-#                       Arely Hilda Luis Tiburcio
-#                       Anton Pashkov
+#    Number    1
+#    Pages     175-180
+#    Year      1988
+#    ISSN      0378-4754
+#    DOI       https://doi.org/10.1016/0378-4754(88)90121-8
+# 
+#    Copyright (C) 2022  Karime Ochoa Jacinto
+#                        Arely Hilda Luis Tiburcio
+#                        Anton Pashkov
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
