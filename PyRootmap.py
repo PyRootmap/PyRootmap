@@ -10,7 +10,7 @@
 #    Year      1988
 #    ISSN      0378-4754
 #    DOI       https://doi.org/10.1016/0378-4754(88)90121-8
-# 
+#
 #    Copyright (C) 2022  Karime Ochoa Jacinto
 #                        Arely Hilda Luis Tiburcio
 #                        Anton Pashkov
@@ -27,7 +27,7 @@
 #
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
-        
+
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -66,8 +66,8 @@ def root_map(x, y, z, D, G):
     return np.dot(a, b)
 
 
-points = np.empty(shape=(20, 3, 1))
-directions = np.empty(shape=(20, 3, 1))
+points = np.empty(shape=(50, 3, 1))
+directions = np.empty(shape=(50, 3, 1))
 t_x, t_y, t_z = 0.001, 0, 2
 x_dir, y_dir, z_dir = 0, 0, 0
 W, T, D, G = 2, 4/60, 30, 65
@@ -94,6 +94,8 @@ y = points[:, 1, 0]
 z = points[:, 2, 0]
 ax.plot3D(x, y, z, c='red')
 
+W, D, G = 0.4, 30, 0
+
 # Crear raices secundarias
 for j in range(1, len(points)):
     points_2 = np.empty(shape=(len(points)-j, 3, 1))
@@ -101,7 +103,9 @@ for j in range(1, len(points)):
     t_x, t_y, t_z = points[j]
     x_dir, y_dir, z_dir = directions[j]
     t_x, t_y, t_z = t_x[0], t_y[0], t_z[0]
-    x_dir, y_dir, z_dir = x_dir[0], y_dir[0], z_dir[0]
+    x_dir, y_dir, z_dir = (np.random.random() * x_dir[0],
+                          np.random.random() * y_dir[0],
+                          np.random.random() * z_dir[0])
     directions_2[0] = np.array([[x_dir], [y_dir], [z_dir]])
     points_2[0] = np.array([[t_x], [t_y], [t_z]])
     for i in range(1, len(points_2)):
