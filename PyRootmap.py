@@ -1,7 +1,36 @@
+#!/usr/bin/env python3
+#    A Python implementation of Diggle's (1988) Rootmap algorithm
+#
+#    Title     Rootmap: a root growth model
+#    Author    A. J. Diggle
+#    Journal   Mathematics and Computers in Simulation
+#    Volume    30
+#   Number    1
+#   Pages     175-180
+#   Year      1988
+#   ISSN      0378-4754
+#   DOI       https://doi.org/10.1016/0378-4754(88)90121-8
+#
+#   Copyright (C) 2022  Karime Ochoa Jacinto
+#                       Arely Hilda Luis Tiburcio
+#                       Anton Pashkov
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program.  If not, see <https://www.gnu.org/licenses/>.
+        
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-#  from mpl_toolkits import mplot3d
 
 
 # W índice de crecimiento
