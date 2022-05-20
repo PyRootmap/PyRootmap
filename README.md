@@ -87,4 +87,3 @@ Change to the directory where `PyRootmap.py` is located with `cd PyRootmap/`. Th
 ## References
 
 - Diggle, A. J. (1988). Rootmap: a root growth model. *Mathematics and Computers in Simulation*, 30(1), 175-180. DOI: [10.1016/0378-4754(88)90121-8](https://doi.org/10.1016/0378-4754(88)90121-8)
-
