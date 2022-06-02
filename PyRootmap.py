@@ -39,17 +39,17 @@ import pandas as pd
 # G índice de gravitopismo
 
 def growth_function(old_x_pos, old_y_pos, old_z_pos, x_dir, y_dir, z_dir, W, T, D, G):
+    new_dir = root_map(x_dir, y_dir, z_dir, D, G)
     new_pos = np.array([[old_x_pos],
                      [old_y_pos],
-                     [old_z_pos]]) + W * T * root_map(x_dir, y_dir, z_dir, D, G)
-    new_dir = np.array([[x_dir], [y_dir], [z_dir]])
+                     [old_z_pos]]) + W * T * new_dir
     return pd.Series({'pos': new_pos, 'dir': new_dir})
 
 def root_map(x, y, z, D, G):
     if x == 0:
         x = 0.00001
-    alpha = np.arccos(np.radians(z))
-    beta = np.arctan(np.radians(y / x))
+    alpha = np.radians(np.arccos(np.radians(z)))
+    beta = np.radians(np.arctan(np.radians(y / x)))
     R = np.random.random()
     while R == 0:
         R = np.random.random()
@@ -66,18 +66,17 @@ def root_map(x, y, z, D, G):
     return np.dot(a, b)
 
 
-points = np.empty(shape=(50, 3, 1))
-directions = np.empty(shape=(50, 3, 1))
-t_x, t_y, t_z = 0.001, 0, 2
+points = np.empty(shape=(300, 3, 1))
+directions = np.empty(shape=(300, 3, 1))
+t_x, t_y, t_z = 0, 0, 0
 x_dir, y_dir, z_dir = 0, 0, 0
-W, T, D, G = 2, 4/60, 30, 65
+W, T, D, G = 1, 1, 30, 65
 directions[0] = np.array([[x_dir], [y_dir], [z_dir]])
 points[0] = np.array([[t_x], [t_y], [t_z]])
 
-ax, fig = plt.subplots(1)
-ax = plt.axes(projection='3d')
-ax.set_axis_off()
-
+fig = plt.figure()
+# ax = fig.add_subplot(111, projection='3d')
+ax = fig.add_subplot(111)
 
 # Crear raíz primaria
 for i in range(1, len(points)):
@@ -92,9 +91,10 @@ for i in range(1, len(points)):
 x = points[:, 0, 0]
 y = points[:, 1, 0]
 z = points[:, 2, 0]
-ax.plot3D(x, y, z, c='red')
+# ax.plot3D(x, y, z, c='red')
+ax.plot(y, x, c='red')
 
-W, D, G = 0.4, 30, 0
+W, D, G = 0.3, 30, 0
 
 # Crear raices secundarias
 for j in range(1, len(points)):
@@ -120,8 +120,13 @@ for j in range(1, len(points)):
     x = points_2[:, 0, 0]
     y = points_2[:, 1, 0]
     z = points_2[:, 2, 0]
-    ax.plot3D(x, y, z, c='grey')
+    # ax.plot3D(x, y, z, c='grey')
+    ax.plot(y, x, c='grey')
 
+limits = ax.get_ylim()
+lim = abs(limits[1] - limits[0])/2
+ax.set_xlim(-lim, lim)
 
-fig.invert_yaxis()
+ax.invert_yaxis()
+plt.grid()
 plt.show()
