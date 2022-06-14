@@ -10,21 +10,7 @@ The contents of this repository are licensed under the GNU General Public Licens
 
 ## Introduction
 
-This project consists of an implementation of the Rootmap root growth model displayed in Diggle's (1988) paper, in order to output a graphical visualization of a plant root, whose shape and size will rely on the imposed initial conditions. In this model, each new direction of growth is defined by the past direction of growth, and the deflection and geotropism indices, based on the following equations:
-
-<div markdown = '1' style = 'margin-left: 20%; margin-right: 20%'>
-
-<img src='https://raw.githubusercontent.com/PyRootmap/PyRootmap/main/img/form1.png'>
-
-</div>
-
-Each new triple of coordinates is calculated from the previous coordinates, growth rate, time step and the direction of growth:
-
-<div markdown = '1' style = 'margin-left: 35%; margin-right: 35%'>
-
-<img src='https://raw.githubusercontent.com/PyRootmap/PyRootmap/main/img/form2.png'>
-
-</div>
+This project consists of an implementation of the Rootmap root growth model displayed in Diggle's (1988) paper, in order to output a graphical visualization of a plant root, whose shape and size will rely on the imposed initial conditions.
 
 This project was arranged to facilitate future research efforts which require some sort of plant root modeling, such as the simulation of ancient or extreme environments to infer the potential anatomical structure of plant roots.
 
@@ -34,7 +20,36 @@ This project was arranged to facilitate future research efforts which require so
 - Create a set of graphical visualizations of the root model from the imposed initial conditions.
 
 ## Methodology
+### How does the model works?
+This model proposed by Diggle (1988), mantains a representation of the roots updated in time steps for an imposed duration, using a recursive routine that traces the entire tree in each time step and creates records as a binary tree of branch and root tip records. This composed as follows:
+- **Branch records**: Contain the location of the branch in three dimensional coordinates, the age of the branch and the length of root between that branch and the preceding one.
+- **Root tip records**: Contains the location of the root tip, the length of root between the tip and the last branch, and direction in which that tip grew in the last time step.
 
+The locations in space of the branches and root tips are controlled by 2 parameters in addition to the tip growth rate. These parameters are the **deflection index**, which controls the tendency of the root tips to deflect from the direction in which they grew in the last time step, and the **geotropism index** , which controls the tendency for the deflections to occur preferentially downward. Both of these indices are numbers in the range 0 to 100. 
+A deflection index of 0 results in no deflection from the past heading of that tip, a value of 100 results in a random deflection. Reciprocally, geotropism index of 0 results in no bias toward downward growth and an index of 100 causes all deflections to be in the direction that is nearest to straight down.
+
+In each time step a direction of growth is calculated for each root tip from the past direction of growth for that tip, and the deflection and geotropism indices according to the following equations:
+
+<img src='https://raw.githubusercontent.com/PyRootmap/PyRootmap/main/img/1.png'>
+<img src='https://raw.githubusercontent.com/PyRootmap/PyRootmap/main/img/2.png'>
+
+Where:
+- $(x, y, z)$ are the cartesian coordinates of a vector of unit length oriented in the past direction of growth.
+- $(x', y', z')$ are the the coordinates representing the new direction of growth.
+- $\phi$ is the angle of deflection of the new direction from the old one.
+- $\theta$ is te angle of orientation of the deflection relative to the deflection which would be most nearly straight down.
+- $D$ is the deflection index.
+- $G$ is the geotropism index.
+- $R$ is a random number in the range $(0,1)$.
+- $\alpha\,=\, arcos\, z$
+- $\beta\,=\,arctan\frac{y}{x}$
+The new location of the tip is calculated from the previous location of the tip, the direction of growth, and the growth rate as follows:
+<img src='https://raw.githubusercontent.com/PyRootmap/PyRootmap/main/img/3.png'>
+Where:
+- $(X\,Y\,Z)$ are the coordinates of the previous tip location.
+- $(X'\,Y'\,Z')$ are the coordinates of the new tip location.
+- $W$ is the growth rate.
+- $T$ is the tome step.
 To create the simulation, our team followed these steps:
 
 1. Import the necessary libraries (numpy, matplotlib, and pandas).
