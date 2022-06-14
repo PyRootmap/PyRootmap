@@ -62,6 +62,33 @@ To create the simulation, our team followed these steps:
 4. Generate a graphical visualization of the primary root.
 5. On each node of the primary root, append a secondary root, whose initial conditions depend on the state of the respective node.
 
+
+
+For the implementation of this project, two functions were created:
+
+- growth_function: this function receives the above coordinates, growth rate, time step, deflection index and gravitropism index. It returns the new location of the root tip.
+
+- root_map : This function calculates the new growth direction, given the previous growth direction and the deviation and geotropism rates.
+
+We use the following libraries :
+
+ Numpy
+
+- To create the arrays.
+- Transform values to radians.
+- To calculate sine, cosine, arctangent.
+- To calculate exponential and logarithmic values.
+- To create random values.
+- To calculate the dot product.
+
+Pandas
+
+- To create a series of Pandas from a dictionary.
+
+Matplotlib
+- To plot our root.
+- To establish the limits of the axes of our graph.
+
 ## Results
 
 <img src='https://raw.githubusercontent.com/PyRootmap/PyRootmap/main/img/root_v1.png'>
