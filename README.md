@@ -41,15 +41,19 @@ Where:
 - $D$ is the deflection index.
 - $G$ is the geotropism index.
 - $R$ is a random number in the range $(0,1)$.
-- $\alpha\,=\, arcos\, z$
-- $\beta\,=\,arctan\frac{y}{x}$
+- $\alpha=\, arcos\, z$
+- $\beta=\,arctan\frac{y}{x}$
 The new location of the tip is calculated from the previous location of the tip, the direction of growth, and the growth rate as follows:
 <img src='https://raw.githubusercontent.com/PyRootmap/PyRootmap/main/img/3.png'>
 Where:
-- $(X\,Y\,Z)$ are the coordinates of the previous tip location.
-- $(X'\,Y'\,Z')$ are the coordinates of the new tip location.
-- $W$ is the growth rate.
-- $T$ is the tome step.
+
+- (X Y Z) are the coordinates of the previous tip location.
+- (X' Y' Z') are the coordinates of the new tip location.
+- W is the growth rate.
+- T is the tome step.
+
+
+
 To create the simulation, our team followed these steps:
 
 1. Import the necessary libraries (numpy, matplotlib, and pandas).
